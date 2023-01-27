@@ -4,9 +4,53 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Calendar This!</title>
 </head>
 <body>
+    {% if form.errors %}
+        <ul class="errors">
+        {% for error in form.errors %}
+            <li>{{ error }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form method="post" action="">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.name.label }}
+            {{ form.name() }}
+        </div>
+        <div>
+            {{ form.start_date.label }}
+            {{ form.start_date() }}
+            {{ form.start_time() }}
+        </div>
+        <div>
+            {% if form.end_date.errors %}
+            <ul class="errors">
+                {% for error in form.end_date.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            {{ form.end_date.label }}
+            {{ form.end_date() }}
+            {{ form.end_time() }}
+        </div>
+        <div>
+            {{ form.description.label }}
+            {{ form.description() }}
+        </div>
+        <div>
+            {{ form.private.label }}
+            {{ form.private() }}
+        </div>
+        <div>
+            {{ form.submit() }}
+        </div>
+    </form>
     <table>
         <thead>
             <tr>
